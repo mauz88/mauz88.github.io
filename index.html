@@ -121,6 +121,59 @@
   <p>Deployed a Cowrie SSH honeypot on AWS EC2 to capture and analyze SSH brute-force attack attempts. Includes logs and a Python parser for event analysis.</p>
   <a href="https://github.com/mauz88/cowrie-honeypot" target="_blank">View Project</a>
 </div>
+
+<div class="project">
+  <h3>Suricata IDS Test</h3>
+  <p>
+    This project demonstrates network intrusion detection using Suricata on an AWS EC2 instance. 
+    It captures alerts generated from a test Nmap scan and logs them in JSON and fast log formats.
+  </p>
+  <ul>
+    <li><strong>Steps Performed:</strong>
+      <ol>
+        <li>Installed Suricata on EC2 and prepared the ruleset (<code>suricata.yaml</code>).</li>
+        <li>Ran Suricata in live capture mode on interface <code>ens5</code>.</li>
+        <li>Executed an Nmap scan from a Windows machine targeting the EC2 instance.</li>
+        <li>Collected and analyzed alerts in <code>eve.json</code> and <code>fast.log</code>.</li>
+      </ol>
+    </li>
+    <li><strong>Sample Alert (from eve.json):</strong>
+      <pre>{
+  "timestamp": "2025-08-12T18:29:48.732867+0000",
+  "flow_id": 1189257252974275,
+  "in_iface": "ens5",
+  "event_type": "alert",
+  "src_ip": "85.255.233.2",
+  "src_port": 47687,
+  "dest_ip": "172.31.32.173",
+  "dest_port": 22,
+  "proto": "TCP"
+}</pre>
+    </li>
+    <li><strong>Configuration:</strong>
+      <pre>
+# excerpt from suricata.yaml
+var HOME_NET: "[192.168.1.0/24]"
+af-packet:
+  - interface: ens5
+    threads: 2
+    cluster-type: cluster_flow
+    cluster-id: 99
+rule-files:
+  - scan.rules
+      </pre>
+    </li>
+  </ul>
+  <p>Files and screenshots from the test:</p>
+  <ul>
+    <li><a href="eve.json" target="_blank">eve.json</a></li>
+    <li><a href="fast.log" target="_blank">fast.log</a></li>
+    <li><a href="suricata.yaml" target="_blank">suricata.yaml</a></li>
+    <li><a href="fast_capture.PNG" target="_blank">Fast Log Screenshot</a></li>
+    <li><a href="json_capture.PNG" target="_blank">JSON Alert Screenshot</a></li>
+    <li><a href="nmap_capture.PNG" target="_blank">Nmap Scan Screenshot</a></li>
+  </ul>
+</div>
     
   </section>
 
