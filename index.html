@@ -177,6 +177,62 @@ rule-files:
     <li><a href="https://github.com/mauz88/Suricata_Detection/blob/main/nmap_capture.PNG" target="_blank">Nmap Scan Screenshot</a></li>
   </ul>
 </div>
+
+<div class="project">
+  <h3>SSH Brute Force Lab with Hydra</h3>
+  <p>
+    This lab demonstrates a controlled brute force attack simulation using <strong>Hydra</strong> against an AWS EC2 Linux instance running SSH.  
+    ⚠️ This was performed in a safe test environment with explicit authorization (my own AWS server).  
+  </p>
+
+  <a href="https://github.com/mauz88/Hydra-Brute-Force" target="_blank">View Project</a>
+  
+  <ul>
+    <li><strong>Lab Setup:</strong>
+      <ul>
+        <li><strong>Attacker:</strong> Windows laptop with WSL2 + Hydra installed</li>
+        <li><strong>Target:</strong> AWS EC2 Linux (Amazon Linux 2) with SSH enabled</li>
+        <li><strong>Authentication:</strong> password-based login (test user)</li>
+        <li><strong>Dictionary:</strong> rockyou.txt</li>
+      </ul>
+    </li>
+
+    <li><strong>Steps Performed:</strong>
+      <ol>
+        <li>Created an EC2 instance and added a <code>testuser</code> with a weak password.</li>
+        <li>Restricted SSH access to my public IP via the AWS security group.</li>
+        <li>Ran Hydra from WSL to brute force the SSH login.</li>
+        <li>Captured logs from the target server to observe failed login attempts.</li>
+        <li>Verified the successful brute force discovery.</li>
+      </ol>
+    </li>
+
+    <li><strong>Evidence:</strong>
+      <ul>
+        <li><a href="https://github.com/mauz88/Hydra-Brute-Force/blob/main/hydra_output.txt" target="_blank">Hydra output</a> (discovered password)</li>
+        <li><a href="https://github.com/mauz88/Hydra-Brute-Force/blob/main/ssh_attempts_log.txt" target="_blank">SSH server logs</a> (PAM attempts)</li>
+      </ul>
+    </li>
+
+    <li><strong>Lessons Learned:</strong>
+      <ul>
+        <li>Brute force attacks are noisy and leave traces in logs.</li>
+        <li>Use <strong>key-based authentication</strong> and disable password logins.</li>
+        <li>Add protections like <code>fail2ban</code> or rate limiting.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p>Files and screenshots from the test:</p>
+  <ul>
+    <li><a href="https://github.com/mauz88/Hydra-Brute-Force/blob/main/hydra_output.txt" target="_blank">Hydra Output File</a></li>
+    <li><a href="https://github.com/mauz88/Hydra-Brute-Force/blob/main/ssh_attempts_log.txt" target="_blank">SSH Logs</a></li>
+    <!-- Example images if you upload them to GitHub -->
+    <li><img src="https://github.com/mauz88/Hydra-Brute-Force/raw/main/hydra_app.PNG" alt="Hydra output screenshot" width="500"></li>
+    <li><img src="https://github.com/mauz88/Hydra-Brute-Force/raw/main/client_logs.PNG" alt="SSH log screenshot" width="500"></li>
+	<li><img src="https://github.com/mauz88/Hydra-Brute-Force/raw/main/hydra_login_success.PNG" alt="Successful login" width="500"></li>
+  </ul>
+</div>
     
   </section>
 
