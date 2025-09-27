@@ -326,7 +326,87 @@ rule-files:
   </ul>
 
 </div>
-    
+
+<div class="project">
+  <h3>WPA2 handshake capture & offline password verification — lab exercise</h3>
+
+  <p>
+    This lab demonstrates an end-to-end workflow for capturing a WPA2 4-way handshake from a controlled access point and performing offline verification against that capture in a safe, isolated environment. The objective is to understand the wireless authentication process, recognise handshakes in packet captures, and evaluate password-strength assumptions without impacting third-party devices or networks.
+  </p>
+
+  <a href="https://github.com/mauz88/WPA2-handshake-capture-offline-password-recovery" target="_blank" rel="noopener noreferrer">View Project on GitHub</a>
+
+  <ul>
+    <li><strong>Disclaimer / Legal & ethical statement:</strong>
+      <p>This work was performed only on equipment I own or where I had explicit written permission to perform testing. Testing was conducted in an isolated lab environment with no production or third-party devices impacted. This repository is for educational and portfolio purposes only.</p>
+    </li>
+
+    <li><strong>Objective:</strong>
+      <p>Demonstrate an end-to-end lab workflow for capturing a WPA2 4-way handshake from a controlled access point and performing offline password verification against the capture to illustrate how weak passphrases may be validated offline.</p>
+    </li>
+
+    <li><strong>Hardware & software (summary):</strong>
+      <ul>
+        <li>Wireless adapter: Qualcomm Atheros AR9271 (lab device).</li>
+        <li>Operating system: Kali GNU/Linux 2025.3 (lab installation).</li>
+        <li>Tooling: aircrack-ng suite (used for capture/analysis). Exact versions are recorded in the repository.</li>
+      </ul>
+    </li>
+
+    <li><strong>Test network setup:</strong>
+      <ul>
+        <li>The target SSID and credentials were configured on a local test device acting as an access point with no Internet uplink.</li>
+        <li><em>Lab SSID lab1:</em> <code>Lab1</code></li>
+        <li><em>Lab password 123456780:</em> <code>(lab-only test credential)</code></li>
+        <li>All devices were dedicated to the lab and contained no personal or third-party data.</li>
+      </ul>
+    </li>
+
+    <li><strong>Methodology (high level):</strong>
+      <ol>
+        <li>Prepared the wireless adapter for passive traffic collection in the isolated lab environment.</li>
+        <li><a href="https://github.com/mauz88/WPA2-handshake-capture-offline-password-recovery/blob/main/monitor%20mode%20wlan1.png" target="_blank">Monitor mode</a></li>
+        <li>Identified the target test AP and channel, then recorded packet captures until a WPA2 4-way handshake was observed.</li>
+        <li><a href="https://github.com/mauz88/WPA2-handshake-capture-offline-password-recovery/blob/main/Selected%20SSID.png" target="_blank">Target SSID</a></li>
+        <li><a href="https://github.com/mauz88/WPA2-handshake-capture-offline-password-recovery/blob/main/Deauthenticate.png" target="_blank">Deauthenticate connected devices</a></li>
+        <li><a href="https://github.com/mauz88/WPA2-handshake-capture-offline-password-recovery/blob/main/WPA%20Handshake%20captured.png" target="_blank">Captured WPA handshake</a></li>
+        <li>Used offline verification methods to test candidate passphrases against the captured handshake (tooling and wordlists referenced in the repository).</li>
+        <li><a href="https://github.com/mauz88/WPA2-handshake-capture-offline-password-recovery/blob/main/crack%20password.png" target="_blank">Decode the PSK</a></li>
+        <li>Documented results and restored all test hardware and network interfaces to normal managed mode after testing.</li>
+      </ol>
+    </li>
+
+    <li><strong>Results:</strong>
+      <ul>
+        <li>A valid WPA2 4-way handshake was captured for the lab AP.</li>
+        <li>The controlled lab password was validated against the capture using an offline wordlist (demonstrating the importance of passphrase strength).</li>
+        <li>All devices and interfaces were returned to their original state after testing.</li>
+      </ul>
+    </li>
+
+    <li><strong>Evidence & artifacts:</strong>
+      <p>Non-sensitive artifacts are available in the repository. Sensitive fields (e.g., full MAC addresses) have been redacted in public assets. Where applicable, SHA256 hashes for capture files are included so reviewers can verify integrity.</p>
+      <ul>
+        <li><a href="https://github.com/mauz88/WPA2-handshake-capture-offline-password-recovery" target="_blank" rel="noopener noreferrer">Repository (sanitised captures & metadata)</a></li>
+      </ul>
+    </li>
+
+    <li><strong>Lessons learned & mitigations:</strong>
+      <ul>
+        <li>Weak passphrases can be verified offline if an attacker obtains a handshake. Use long, random passphrases or passphrases with high entropy.</li>
+        <li>Consider using WPA3 or enterprise authentication (802.1X) where possible.</li>
+        <li>Monitor for anomalous wireless events and implement logging/alerting to detect potential reconnaissance.</li>
+      </ul>
+    </li>
+
+    <li><strong>Responsible disclosure & ethics:</strong>
+      <p>If you discover security issues on third-party networks, obtain explicit permission and follow a responsible disclosure process. This project adhered to a strict "lab only" policy.</p>
+    </li>
+  </ul>
+
+</div>
+
+	  
   </section>
 
   <section id="contact">
